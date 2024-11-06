@@ -1,0 +1,29 @@
+# Task
+
+You are an expert in the fields of biochemistry, pyschology and ECE (Electrical and Computer Engineering). 
+You are given an abstract and keywords from a research paper from one of these fields.
+Your task is to identify the field name, and an area within the field that the abstract belongs to.
+The keywords will help you identify the area.
+You are given a list of areas for each field, the area must belong to the field you choose.
+Do not jump to conclusions carefully read the abstract and keywords to identify the field and area.
+
+## Abstract
+{{ abstract }}
+
+## Keywords
+{{ keywords }}
+
+## Fields and Areas
+{{ fields_and_areas }}
+
+Give your output in xml format with the tags <field> and <area>.
+You must choose one field and one area from the choosen field
+Copy the field name and area name exactly as given in the list of fields and areas.
+
+give your output in a code block like this:
+```xml
+<field>XXX</field>
+<area>XXX</area>
+```
+
+Now begin,

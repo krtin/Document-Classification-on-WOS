@@ -204,3 +204,57 @@ It seems at least for the top-level classification a classical model is good eno
 - Try BERT like model especially for level 2 models
 
 ## LLMs
+- For LLMs I will go with anthropic claude maybe haiku is good enough to keep my cost low
+- Also, can leverage context caching at lower token count, which could enable sending large number of training examples, which will act like fine-tuning if the in-context examples are large enough
+- using haiku3.5
+
+### Main Subject Results
+
+
+|              | precision | recall | f1-score | support |
+|--------------|-----------|--------|----------|---------|
+| biochemistry | 0.95      | 1.00   | 0.97     | 574     |
+| ece          | 0.87      | 0.95   | 0.91     | 249     |
+| psychology   | 0.98      | 0.84   | 0.90     | 324     |
+|              |           |        |          |         |
+| accuracy     |           |        | 0.94     | 1147    |
+| macro avg    | 0.94      | 0.93   | 0.93     | 1147    |
+| weighted avg | 0.94      | 0.94   | 0.94     | 1147    |
+
+### Overall Results (granular)
+
+|                              | precision | recall | f1-score | support |
+|------------------------------|-----------|--------|----------|---------|
+| attention                    | 0.74      | 0.18   | 0.29     | 77      |
+| child abuse                  | 0.98      | 0.93   | 0.95     | 85      |
+| depression                   | 0.87      | 0.66   | 0.75     | 71      |
+| digital control              | 0.78      | 0.93   | 0.85     | 88      |
+| electricity                  | 0.83      | 0.89   | 0.86     | 89      |
+| ethics                       | 0.00      | 0.00   | 0.00     | 0       |
+| immunology                   | 0.82      | 0.97   | 0.88     | 146     |
+| molecular biology            | 0.32      | 0.93   | 0.48     | 138     |
+| northern blotting            | 1.00      | 0.02   | 0.04     | 141     |
+| operational amplifier        | 1.00      | 0.94   | 0.97     | 72      |
+| patient safety               | 0.00      | 0.00   | 0.00     | 0       |
+| polymerase chain reaction    | 0.93      | 0.17   | 0.28     | 149     |
+| project management           | 0.00      | 0.00   | 0.00     | 0       |
+| social cognition             | 0.72      | 0.96   | 0.82     | 91      |
+| wind engineering             | 0.00      | 0.00   | 0.00     | 0       |
+|                              |           |        |          |         |
+| accuracy                     |           |        | 0.66     | 1147    |
+| macro avg                    | 0.60      | 0.51   | 0.48     | 1147    |
+| weighted avg                 | 0.81      | 0.66   | 0.61     | 1147    |
+
+* ignore the 0 support those are instances where model outputs something not present in the provided list.
+
+
+### Conclusion
+- The model is significantly better in biochemistry
+- Overall the random forest performs much better in terms of F1
+- LLM is generally better at precision compared to recall
+
+### Next Steps
+- I would try few shots or pseudo-fine-tuning via providing examples in prompt
+- To improve on zero shot performance, I would split the two classifications in separate steps, which would increase accuracy for sure
+- Tackling each class separately and resolving ambiguity in the prompt could be useful too
+- other advanced prompt engineering techniques could be tried
